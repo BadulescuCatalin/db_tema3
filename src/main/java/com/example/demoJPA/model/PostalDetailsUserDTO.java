@@ -16,3 +16,4 @@ public class PostalDetailsUserDTO {
         this.phoneNumber = customer.getPhone();
     }
 }
+

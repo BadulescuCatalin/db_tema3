@@ -1,6 +1,7 @@
 package com.example.demoJPA.controller;
 
 import com.example.demoJPA.model.Customer;
+import com.example.demoJPA.model.PostalDetailsUserDTO;
 import com.example.demoJPA.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,5 +56,10 @@ public class CustomersController {
     public ResponseEntity<String> deleteCustomer(@PathVariable(value = "id") Integer id) {
         String message = customerService.deleteCustomerById(id);
         return message.contains("successfuly") ? ResponseEntity.ok().body(message) : ResponseEntity.badRequest().body(message);
+    }
+
+    @GetMapping(value = "/postalDetails/{username}")
+    public PostalDetailsUserDTO getPostalDetailsByUsername(@PathVariable String username) {
+        return customerService.getPostalDetailsForUsername(username);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demoJPA.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Order {
     private String comments;
     @ManyToOne
     Customer customer;
+    @JsonIgnore
     @OneToMany
     List<OrderDetail> orderDetailList;
 

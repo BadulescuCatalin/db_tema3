@@ -1,9 +1,12 @@
 package com.example.demoJPA.service;
 
 import com.example.demoJPA.model.Customer;
+import com.example.demoJPA.model.PostalDetailsUserDTO;
 import com.example.demoJPA.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +42,12 @@ public class CustomerService {
             return "Customer deleted successfuly";
         }
         return "Invalid id";
+    }
+
+    public PostalDetailsUserDTO getPostalDetailsForUsername(String username) {
+        Customer customers = customerRepository.findByUsername(username);
+        PostalDetailsUserDTO dtoList = new PostalDetailsUserDTO(customers);
+        return dtoList;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.demoJPA.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -16,11 +17,12 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue
-    private Integer code;
+    private Integer id;
     private String name;
     private String description;
     private Integer stock;
     private Double price;
+    @JsonIgnore
     @OneToMany
     List<OrderDetail> orderDetailList;
 }

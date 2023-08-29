@@ -1,5 +1,6 @@
 package com.example.demoJPA.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,8 +24,10 @@ public class Customer {
     private String city;
     private String postalCode;
     private String country;
+    @JsonIgnore
     @OneToMany
     List<Payment> payments;
+    @JsonIgnore
     @OneToMany
     List<Order> orders;
 }
