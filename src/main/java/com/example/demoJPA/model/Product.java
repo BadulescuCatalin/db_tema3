@@ -4,10 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue
-    private String code;
+    private Integer code;
     private String name;
     private String description;
     private Integer stock;
