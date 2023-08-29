@@ -1,28 +1,42 @@
 package com.example.demoJPA.controller;
 
-import com.example.demoJPA.model.Customers;
-import com.example.demoJPA.service.CustomersService;
+import com.example.demoJPA.model.Customer;
+import com.example.demoJPA.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping(value = "/customer")
 public class CustomersController {
     @Autowired
-    CustomersService customersService;
+    CustomerService customerService;
 
     @PostMapping(value = "/insertCustomer")
-    public void InsertCustomer(){
-        Customers c = new Customers();
-        c.setUsername("MihailB14");
-        c.setFirst_name("Mihail");
-        c.setLast_name("Barbulescu");
-        c.setPhone("0773844123");
-        c.setAddress("Bd. Tineretului");
-        c.setCity("Bucuresti");
-        c.setPostalCode("123456");
-        c.setCountry("Romania");
-        customersService.CreateCustomer(c);
+    public ResponseEntity<String> addCustomer(@RequestBody Customer c) {
+        Customer savedCustomer = customerService.addCustomer(c);
+        if (savedCustomer == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input");
+        }
+        return ResponseEntity.ok()
+                .body("Customer added successfully!");
+    }
+
+    @GetMapping(value = "/allCustomers")
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
+    }
+
+    @PutMapping(value = "/updateCustomer/{id}")
+    public ResponseEntity<String> updateCustomerInfo(@RequestBody Customer c,
+                                                     @PathVariable Integer id) {
+        Customer updatedCustomer = customerService.updateCustomer(c);
+        if (updatedCustomer == null) {
+            return ResponseEntity.badRequest().body("Invalid input");
+        }
+        return ResponseEntity.ok().body("Customer updated successfuly");
     }
 }

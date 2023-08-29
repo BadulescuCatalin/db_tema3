@@ -1,14 +1,16 @@
 package com.example.demoJPA.service;
 
-import com.example.demoJPA.model.Products;
+import com.example.demoJPA.model.Product;
 import com.example.demoJPA.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class ProductsService {
+@Service
+public class ProductService {
     @Autowired
     ProductsRepository productsRepository;
 
-    public void InsertProduct(Products p){
+    public void insertProduct(Product p) {
         productsRepository.save(p);
     }
 }

@@ -3,24 +3,20 @@ package com.example.demoJPA.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@NoArgsConstructor
 @Getter
 @Setter
-public class Products {
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class OrderDetail {
     @Id
     @GeneratedValue
-    String code;
-
-    String name;
-
-    String description;
-
-    Integer stock;
-
-    Double price;
+    private Integer id;
+    private Integer quantity;
+    private Double priceEach;
 }
